@@ -26,11 +26,11 @@ angular.module('app', [
     }])
     .config([
         '$routeProvider', function ($routeProvider) {
-
             $routeProvider
                 .when('/', {
                     templateUrl: './templates/index.html',
-                    title: 'Kong Admin'
+                    title: 'Kong Admin',
+                    controller: 'index'
                 })
                 .when('/api', {
                     templateUrl: './templates/api/list.html',
@@ -43,6 +43,18 @@ angular.module('app', [
                 .when('/api/create', {
                     templateUrl: './templates/api/api.html',
                     controller: 'apiCreate'
+                })
+                .when('/plugins', {
+                    templateUrl: './templates/plugins/list.html',
+                    controller: 'pluginsList'
+                })
+                .when('/plugins/add', {
+                    templateUrl: './templates/plugins/plugin.html',
+                    controller: 'pluginsAdd'
+                })
+                .when('/plugins/edit/:id', {
+                    templateUrl: './templates/plugins/plugin.html',
+                    controller: 'pluginsEdit'
                 })
                 .otherwise({
                     redirectTo: '/'

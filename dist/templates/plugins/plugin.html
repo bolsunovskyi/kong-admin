@@ -1,0 +1,53 @@
+<div class="col-lg-6 col-lg-offset-3">
+    <a class="panel-link" href="https://getkong.org/plugins/" target="_blank">Kong Plugins</a>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{{ pluginAction }} Plugin</h2>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="submit()">
+                <div class="alert alert-danger" ng-if="error">
+                    {{ error }}
+                </div>
+                <div class="form-group">
+                    <label>API</label>
+                    <select ng-disabled="apiDisabled" required ng-model="apiID" class="form-control">
+                        <option></option>
+                        <option value="{{ api.id }}" ng-repeat="api in apis">
+                            {{ api.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Plugin</label>
+                    <select ng-disabled="pluginDisabled" required ng-change="pluginSelect()" ng-model="selectedPlugin" class="form-control">
+                        <option></option>
+                        <option value="{{ plugin }}" ng-repeat="(id, plugin) in enabledPlugins">
+                            {{ plugin }}
+                        </option>
+                    </select>
+                </div>
+                <hr />
+                <div class="form-group" ng-repeat="(name, data) in pluginFields">
+                    <label>{{ name }} <span ng-if="data.required">*</span></label>
+                    <!--<div class="hidden" ng-if="data.default">{{ plugin['config.' + name] = data.default }}</div>-->
+                    <div class="alert alert-danger" ng-if="data.type == 'table'">This plugin is not supported, use curl or postman please :(</div>
+                    <input ng-required="data.required" type="text" ng-if="data.type == 'string'" ng-model="plugin['config.' + name]" class="form-control" />
+                    <input ng-required="data.required" type="number" ng-if="data.type == 'number'" ng-model="plugin['config.' + name]" class="form-control" />
+                    <select ng-if="data.type == 'boolean'" class="form-control">
+                        <option ng-value="true" ng-selected="data.default == true">TRUE</option>
+                        <option ng-value="false" ng-selected="data.default == false">FALSE</option>
+                    </select>
+                    <textarea ng-required="data.required" ng-if="data.type == 'array'" ng-model="plugin['config.' + name]" class="form-control"></textarea>
+                    <small ng-if="data.type == 'array'">Comma separated array values</small>
+                    <input ng-required="data.required" type="url" ng-if="data.type == 'url'" ng-model="plugin['config.' + name]" class="form-control" />
+                    <input ng-required="data.required" type="text" ng-if="!data.hasOwnProperty('type')" ng-model="plugin['config.' + name]" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control">{{ pluginAction }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

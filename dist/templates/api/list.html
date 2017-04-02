@@ -3,6 +3,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>URIs</th>
             <th>Upstream</th>
@@ -11,6 +12,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="value in apis">
+            <td>{{ value.id }}</td>
             <td>{{ value.name }}</td>
             <td>{{ value.uris.join() }}</td>
             <td>{{ value.upstream_url }}</td>

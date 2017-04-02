@@ -4,7 +4,7 @@ angular.module('app')
         '$scope',
         'kong.api',
         function ($rootScope, $scope, kongAPI) {
-            apis = kongAPI($rootScope.kongHTTPAddress);
+            var apis = kongAPI($rootScope.kongHTTPAddress);
 
             $scope.delete = function (id) {
                 if (confirm("Sure ?")) {
@@ -61,7 +61,7 @@ angular.module('app')
         '$routeParams',
         function($rootScope, $scope, kongAPI, $location, $routeParams) {
             $scope.apiAction = 'Edit';
-            apis = kongAPI($rootScope.kongHTTPAddress);
+            var apis = kongAPI($rootScope.kongHTTPAddress);
             console.log($routeParams.id);
 
             apis.get({id: $routeParams.id}, {}, function(data){

@@ -5,3 +5,8 @@
 .create-btn {
     margin-bottom: 20px;
 }
+
+.panel-link {
+    margin-bottom: 10px;
+    display: block;
+}

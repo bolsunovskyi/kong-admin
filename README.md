@@ -10,3 +10,7 @@ To run in docker execute following commands:
 Details of project build you can see in Dockerfile.
 
 To test admin panel with local kong you may run docker-compose with provided docker-compose.yml file
+
+TODO:
+- Implement pagination
+- Implement plugins with table types
