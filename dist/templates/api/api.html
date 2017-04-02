@@ -1,0 +1,98 @@
+<div class="col-lg-6 col-lg-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{{ apiAction }} API</h2>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger" ng-if="error">
+                {{ error }}
+            </div>
+            <form ng-submit="submit()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input required ng-model="api.name" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>URIs</label>
+                    <textarea ng-model="api.uris" class="form-control"></textarea>
+                    <small>A comma-separated list of URIs prefixes that point to your API. For example: /my-path. At least one of hosts, uris, or methods should be specified.</small>
+                </div>
+                <div class="form-group">
+                    <label>upstream_url</label>
+                    <input ng-model="api.upstream_url" required type="text" class="form-control" />
+                    <small>The base target URL that points to your API server. This URL will be used for proxying requests. For example: https://example.com.</small>
+                </div>
+                <div class="form-group">
+                    <label>strip_uri</label>
+                    <select ng-model="api.strip_uri" class="form-control">
+                        <option ng-value="true">TRUE</option>
+                        <option ng-value="false">FALSE</option>
+                    </select>
+                    <small>When matching an API via one of the uris prefixes, strip that matching prefix from the upstream URI to be requested. Default: true.</small>
+                </div>
+
+                <uib-accordion>
+                    <div uib-accordion-group class="panel-default" heading="Additional params" is-open="false">
+                        <div class="form-group">
+                            <label>Hosts</label>
+                            <textarea ng-model="api.hosts" class="form-control"></textarea>
+                            <small>A comma-separated list of domain names that point to your API. For example: example.com. At least one of hosts, uris, or methods should be specified.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Methods</label>
+                            <textarea ng-model="api.methods" class="form-control"></textarea>
+                            <small>A comma-separated list of HTTP methods that point to your API. For example: GET,POST. At least one of hosts, uris, or methods should be specified.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>preserve_host</label>
+                            <select ng-model="api.preserve_host" class="form-control">
+                                <option ng-value="true">TRUE</option>
+                                <option ng-value="false">FALSE</option>
+                            </select>
+                            <small>When matching an API via one of the hosts domain names, make sure the request Host header is forwarded to the upstream service. By default, this is false, and the upstream Host header will be extracted from the configured upstream_url.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>retries</label>
+                            <input ng-model="api.retries" type="number" class="form-control" />
+                            <small>The number of retries to execute upon failure to proxy. The default is 5.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>upstream_connect_timeout</label>
+                            <input ng-model="api.upstream_connect_timeout" type="number" value="60000" class="form-control" />
+                            <small>The timeout in milliseconds for establishing a connection to your upstream service. Defaults to 60000.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>upstream_send_timeout</label>
+                            <input ng-model="api.upstream_send_timeout" type="number" class="form-control" />
+                            <small>The timeout in milliseconds between two successive write operations for transmitting a request to your upstream service Defaults to 60000.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>upstream_read_timeout</label>
+                            <input ng-model="api.upstream_read_timeout" type="number" class="form-control" />
+                            <small>The timeout in milliseconds between two successive read operations for transmitting a request to your upstream service Defaults to 60000.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>https_only</label>
+                            <select ng-model="api.https_only" class="form-control">
+                                <option ng-value="true">TRUE</option>
+                                <option ng-value="false">FALSE</option>
+                            </select>
+                            <small>To be enabled if you wish to only serve an API through HTTPS, on the appropriate port (8443 by default). Default: false.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>http_if_terminated</label>
+                            <select ng-model="api.http_if_terminated" class="form-control">
+                                <option ng-value="true">TRUE</option>
+                                <option ng-value="false">FALSE</option>
+                            </select>
+                            <small>Consider the X-Forwarded-Proto header when enforcing HTTPS only traffic. Default: true.</small>
+                        </div>
+                    </div>
+                </uib-accordion>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control">{{ apiAction }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
