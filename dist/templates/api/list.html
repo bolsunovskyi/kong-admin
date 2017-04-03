@@ -13,7 +13,7 @@
     <tbody>
         <tr ng-repeat="value in apis">
             <td>{{ value.id }}</td>
-            <td>{{ value.name }}</td>
+            <td><a href="#!/api/edit/{{ value.id }}" >{{ value.name }}</a></td>
             <td>{{ value.uris.join() }}</td>
             <td>{{ value.upstream_url }}</td>
             <td>

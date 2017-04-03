@@ -15659,7 +15659,6 @@ angular.module('app')
         'kong.api',
         '$location',
         function($rootScope, $scope, kongAPI, $location) {
-            $scope.apiAction = 'Create';
             apis = kongAPI($rootScope.kongHTTPAddress);
 
             $scope.api = {
@@ -15689,7 +15688,6 @@ angular.module('app')
         '$location',
         '$routeParams',
         function($rootScope, $scope, kongAPI, $location, $routeParams) {
-            $scope.apiAction = 'Edit';
             var apis = kongAPI($rootScope.kongHTTPAddress);
             console.log($routeParams.id);
 
@@ -15706,6 +15704,7 @@ angular.module('app')
             }
         }
     ]);
+
 angular.module('app')
     .controller('index', [
         '$rootScope',
