@@ -18,7 +18,7 @@ var css = [
     './src/css/**/*.css'
 ];
 
-var dev = true;
+var dev = false;
 
 gulp.task('js', function () {
     gulp.src(src)
