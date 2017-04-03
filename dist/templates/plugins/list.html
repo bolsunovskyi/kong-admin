@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="value in plugins">
-        <td>{{ value.name }}</td>
+        <td><a href="#!/plugins/edit/{{ value.id }}">{{ value.name }}</a></td>
         <td><a href="#!/api/edit/{{ value.api_id }}">{{ value.api_name }}</a></td>
         <td>
             <div class="btn-group" role="group" aria-label="...">
