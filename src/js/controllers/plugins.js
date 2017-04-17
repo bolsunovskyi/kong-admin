@@ -9,7 +9,8 @@ angular.module('app')
         'kong.plugins',
         'kong.api',
         '$routeParams',
-        function ($rootScope, $scope, kongPlugins, kongAPI, $routeParams) {
+        '$location',
+        function ($rootScope, $scope, kongPlugins, kongAPI, $routeParams, $location) {
             $scope.apiDisabled = true;
             $scope.pluginDisabled = true;
             var res = kongPlugins($rootScope.kongHTTPAddress);
@@ -39,6 +40,19 @@ angular.module('app')
                     }
 
                 });
+
+                $scope.submit = function(){
+                    $scope.plugin['name'] = $scope.selectedPlugin.trim();
+
+                    res.update({
+                        api_id: $scope.apiID,
+                        id: $routeParams.id
+                    }, $scope.plugin, function(){
+                        $location.path('/plugins');
+                    }, function(err){
+                        $scope.error = err.data;
+                    })
+                };
 
                 $scope.pluginSelect = function () {
                     // var name = $scope.selectedPlugin.trim();

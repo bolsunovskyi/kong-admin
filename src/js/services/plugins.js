@@ -29,6 +29,10 @@ angular.module('app')
                 get: {
                     method: 'GET',
                     url: address + '/plugins/:id'
+                },
+                update: {
+                    method: 'PATCH',
+                    url: address + '/apis/:api_id/plugins/:id'
                 }
             });
         }
