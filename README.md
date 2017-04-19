@@ -1,5 +1,13 @@
 # Kong Admin
 
+Features:
+- Manage API
+- Manage Plugins
+- Manage Consumers
+- Manage Consumer groups
+
+Demo: http://kong.mihael.me
+
 This is light administration tool for kong api gateway (getkong.org)
 Tested with kong version `0.10.1`
 
