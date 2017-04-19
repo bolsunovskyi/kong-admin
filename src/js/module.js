@@ -56,6 +56,18 @@ angular.module('app', [
                     templateUrl: './templates/plugins/plugin.html',
                     controller: 'pluginsEdit'
                 })
+                .when('/consumers', {
+                    templateUrl: './templates/consumers/list.html',
+                    controller: 'consumersList'
+                })
+                .when('/consumers/add', {
+                    templateUrl: './templates/consumers/consumer.html',
+                    controller: 'consumersAdd'
+                })
+                .when('/consumers/edit/:id', {
+                    templateUrl: './templates/consumers/consumer.html',
+                    controller: 'consumersEdit'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
