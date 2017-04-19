@@ -1,0 +1,57 @@
+<div class="col-lg-6 col-lg-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{{ pluginAction }} Consumer</h2>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="submit()">
+                <div class="alert alert-danger" ng-if="error">
+                    {{ error }}
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" ng-model="consumer.username" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label>Custom ID</label>
+                    <input type="text" class="form-control" ng-model="consumer.custom_id" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control" >Save</button>
+                </div>
+            </form>
+
+            <uib-accordion ng-if="pluginAction == 'Edit'">
+                <div uib-accordion-group class="panel-default" heading="Groups" is-open="false">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Group</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="value in groups">
+                                <td>{{ value.id }}</td>
+                                <td>{{ value.group }}</td>
+                                <td>
+                                    <button ng-click="deleteGroup(value.id)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form ng-submit="addGroup()">
+                        <div class="form-group">
+                            <label>Group</label>
+                            <input ng-model="group.name" required type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary form-control" >Add</button>
+                        </div>
+                    </form>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+</div>

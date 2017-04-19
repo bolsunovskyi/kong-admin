@@ -1,0 +1,25 @@
+<a href="/#!/consumers/add" class="btn btn-primary create-btn">Add Consumer</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Custom ID</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="value in consumers">
+        <td>{{ value.id }}</td>
+        <td>{{ value.username }}</td>
+        <td>{{ value.custom_id }}</td>
+        <td>
+            <div class="btn-group" role="group">
+                <a href="#!/consumers/edit/{{ value.id }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                <button ng-click="delete(value.id)" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

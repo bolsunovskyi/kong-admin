@@ -30,7 +30,7 @@ angular.module('app')
         'kong.api',
         '$location',
         function($rootScope, $scope, kongAPI, $location) {
-            apis = kongAPI($rootScope.kongHTTPAddress);
+            var apis = kongAPI($rootScope.kongHTTPAddress);
 
             $scope.api = {
                 strip_uri: false,
@@ -60,7 +60,6 @@ angular.module('app')
         '$routeParams',
         function($rootScope, $scope, kongAPI, $location, $routeParams) {
             var apis = kongAPI($rootScope.kongHTTPAddress);
-            console.log($routeParams.id);
 
             apis.get({id: $routeParams.id}, {}, function(data){
                 $scope.api = data;

@@ -16,8 +16,6 @@ angular.module('app')
             var res = kongPlugins($rootScope.kongHTTPAddress);
 
             res.get({id: $routeParams.id}, function(data){
-                console.log(data);
-
                 $scope.enabledPlugins = [data.name];
 
                 var api = kongAPI($rootScope.kongHTTPAddress);
@@ -78,13 +76,10 @@ angular.module('app')
             var api = kongAPI($rootScope.kongHTTPAddress);
             api.all(function(data){
                 $scope.apis = data.data;
-                console.log($scope.apis);
 
                 svc.all(function (data) {
-                    console.log(data);
-
                     $scope.plugins = data.data;
-                    console.log($scope.plugins.length);
+
                     for (var i = 0; i < $scope.plugins.length; i++) {
                         for (var j = 0; j < $scope.apis.length; j++) {
                             if ($scope.plugins[i]['api_id'] == $scope.apis[j]['id']) {
