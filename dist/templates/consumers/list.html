@@ -1,5 +1,15 @@
 <a href="/#!/consumers/add" class="btn btn-primary create-btn">Add Consumer</a>
 
+<div class="form-group">
+    <div class="input-group">
+        <input class="form-control" placeholder="Username or ID" />
+
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" style="height:34px;">Edit</button>
+        </span>
+    </div>
+</div>
+
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -23,3 +33,19 @@
     </tr>
     </tbody>
 </table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a ng-class="{hidden: (offset == 1)}" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li ng-repeat="page in pages"><a href="/#!/consumers/{{ page }}">{{ page }}</a></li>
+        <li ng-class="{hidden: (offset == maxPage)}">
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

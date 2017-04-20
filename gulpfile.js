@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 var src = [
+    './node_modules/js-base64/base64.min.js',
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/angular/angular.min.js',
     './node_modules/angular-route/angular-route.min.js',

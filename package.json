@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,6 +15,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "jquery": "^3.2.1",
+    "js-base64": "^2.1.9",
     "local-web-server": "^1.2.7"
   }
 }

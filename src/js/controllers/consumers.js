@@ -50,25 +50,46 @@ angular.module('app')
                 }
             }
     }])
-    .controller('consumersList', ['$scope', 'kong.consumers', '$rootScope', function($scope, service, $rootScope){
-        var cService = service($rootScope.kongHTTPAddress);
+    .controller('consumersList', [
+        '$scope',
+        'kong.consumers',
+        '$rootScope',
+        '$routeParams',
+        function($scope, service, $rootScope, $routeParams){
+            var cService = service($rootScope.kongHTTPAddress);
 
-        cService.all(function(data){
-            $scope.consumers = data.data;
-        });
+            $scope.perPage = 25;
+            $scope.total = 0;
+            $scope.offset = 1;
 
-        $scope.delete = function(id){
-            if (confirm('Sure ?')) {
-                cService.delete({id: id});
+            if ($routeParams.hasOwnProperty('offset')) {
+                $scope.offset = $routeParams.offset;
+            }
 
-                for (var i = 0; i < $scope.consumers.length; i++) {
-                    if ($scope.consumers[i].id == id) {
-                        $scope.consumers.splice(i, 1);
-                        return
+            cService.all({size: $scope.perPage, offset: Base64.encode($scope.offset)}, function(data){
+                console.log(data);
+                $scope.total = data.total;
+                $scope.consumers = data.data;
+                var pages = Math.ceil($scope.total / $scope.perPage);
+                $scope.pages = [];
+                $scope.maxPage = pages;
+                for (var i=1;i<=pages; i++) {
+                    $scope.pages.push(i);
+                }
+            });
+
+            $scope.delete = function(id){
+                if (confirm('Sure ?')) {
+                    cService.delete({id: id});
+
+                    for (var i = 0; i < $scope.consumers.length; i++) {
+                        if ($scope.consumers[i].id == id) {
+                            $scope.consumers.splice(i, 1);
+                            return
+                        }
                     }
                 }
-            }
-        };
+            };
     }])
     .controller('consumersAdd', [
         '$scope', '$location', 'kong.consumers', '$rootScope', function($scope, $location, service, $rootScope){

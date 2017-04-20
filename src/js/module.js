@@ -60,6 +60,10 @@ angular.module('app', [
                     templateUrl: './templates/consumers/list.html',
                     controller: 'consumersList'
                 })
+                .when('/consumers/:offset', {
+                    templateUrl: './templates/consumers/list.html',
+                    controller: 'consumersList'
+                })
                 .when('/consumers/add', {
                     templateUrl: './templates/consumers/consumer.html',
                     controller: 'consumersAdd'
